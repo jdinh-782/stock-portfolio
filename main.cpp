@@ -1,7 +1,9 @@
 #include <iostream>
 #include "API.hpp"
+#include "matplotlib-cpp/matplotlibcpp.h"
 
 
+namespace plt = matplotlibcpp;
 
 int main() {
     yahooAPI::YahooFinanceAPI api;  // create an API object
@@ -9,6 +11,9 @@ int main() {
     api.download_ticker_data("qqq", "2020-01-01", "2020-10-07");
     api.set_interval(MONTHLY);
 
+    // set up Date class
+    // set up matplotlib-cpp
+    // set up xtensor
 
 
     return 0;
