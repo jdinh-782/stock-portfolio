@@ -29,5 +29,5 @@ For any concerns, feel free to reach out by [email](jdinh782@gmail.com).
 [Johnson Dinh](https://www.linkedin.com/in/johnson-dinh/) <br>
 
 ## Acknowledgements
-[lava](https://github.com/lava)
+[lava](https://github.com/lava) <br>
 [xtensor-stack](https://github.com/xtensor-stack)
