@@ -12,6 +12,8 @@ if(NOT PythonLibs_FOUND)
        https://github.com/lava/matplotlib-cpp")
 endif()
 
+
+# for curl
 include_directories(/usr/local/opt/curl/include/)
 
 set(CMAKE_CXX_STANDARD 23)
@@ -20,12 +22,17 @@ set(CURL_LIBRARY, "-lcurl")
 find_package(CURL REQUIRED)
 
 
+# for xtensor
+find_package(xtensor REQUIRED)
+
+
 add_executable(stock_portfolio main.cpp API.hpp Date.hpp)
 
-include_directories(stock_portfolio PRIVATE ${PYTHON_INCLUDE_DIRS} ${CURL_INCLUDE_DIR})
+include_directories(stock_portfolio PRIVATE ${PYTHON_INCLUDE_DIRS} ${CURL_INCLUDE_DIR} ${xtensor_INCLUDE_DIRS})
 target_link_libraries(stock_portfolio
                         PRIVATE
                             ${PYTHON_LIBRARIES}
                             Python3::NumPy
                         ${CURL_LIBRARIES}
+                        ${xtensor}
 )

@@ -1,19 +1,27 @@
-#include <iostream>
 #include "API.hpp"
+#include "Date.hpp"
 #include "matplotlib-cpp/matplotlibcpp.h"
+#include "xtensor.hpp"
 
 
 namespace plt = matplotlibcpp;
 
 int main() {
-    yahooAPI::YahooFinanceAPI api;  // create an API object
+    Date d;
+    auto current_date = d.get_date();
+    d.split_date();
+    auto starting_date = d.year_timeframe(1);
 
-    api.download_ticker_data("qqq", "2020-01-01", "2020-10-07");
-    api.set_interval(MONTHLY);
+    std::cout << "current date: " << current_date << std::endl;
+    std::cout << "starting date: " << starting_date << std::endl;
 
-    // set up Date class
-    // set up matplotlib-cpp
-    // set up xtensor
+//    yahooAPI::YahooFinanceAPI api;  // create an API object
+
+//    api.download_ticker_data("GME", starting_date, current_date);
+//    api.set_interval(DAILY);
+
+    // read file and create xtensor arrays
+
 
 
     return 0;

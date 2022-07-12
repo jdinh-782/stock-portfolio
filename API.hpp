@@ -13,6 +13,7 @@
 #include <iomanip>
 #include <sstream>
 #include <stdio.h>
+#include "iostream"
 
 
 enum Interval {
@@ -166,7 +167,7 @@ namespace yahooAPI {
         std::string output_file_name = ticker + "_" + std::to_string(now) + ".csv";
 
         download_file(url, output_file_name);
-        std::cout << url;
+        // std::cout << url << std::endl;
 
         return output_file_name;
     }
