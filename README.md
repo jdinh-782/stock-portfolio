@@ -6,6 +6,15 @@ A program to display stock information and analyze stocks.
 
 ## Getting Started
 ### Dependencies
+* Ensure intended browser of use is updated to most recent version. Google Chrome or Mozilla Firefox is preferred.
+* g++ is the latest installed.
+* A working C++ compiler is latest installed. 
+* Python version 2.0 is installed.
+* Python version 3.0 is installed.
+* pip version is the latest installed.
+```
+python -m pip install --upgrade pip
+```
 
 ### Installation
 Create a new folder and run the following commands in terminal. <br>
@@ -19,8 +28,16 @@ Now that you are inside the main directory, please install the included packages
 ```
 pip install -r requirements.txt
 ```
+```
+git clone https://github.com/xtensor-stack/xtensor.git
+```
 
 ### Execution
+Assuming all packages and dependencies are installed correctly, you may run the program with the following command: 
+```
+g++ -o stock-portfolio main.exe
+main.exe
+```
 
 ## Help
 For any concerns, feel free to reach out by [email](jdinh782@gmail.com).
