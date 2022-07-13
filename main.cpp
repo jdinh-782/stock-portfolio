@@ -1,8 +1,8 @@
 #include "API.hpp"
 #include "Date.hpp"
-#include "matplotlib-cpp/matplotlibcpp.h"
-#include "xtensor.hpp"
-#include "fstream"
+#include "Data.hpp"
+#include "Plot.hpp"
+
 
 
 namespace plt = matplotlibcpp;
@@ -21,38 +21,21 @@ int main() {
     std::string file_name = api.download_ticker_data("GME", starting_date, current_date);
     api.set_interval(DAILY);
 
-    std::ifstream file;
-    file.open(file_name);
+    Data data(file_name);
+    auto open_data = data.get_open_data();
+    auto close_data = data.get_close_data();
+    auto line_color = data.get_trend();
 
-    auto data = xt::load_csv<std::string>(file);
-    // std::cout << data << std::endl;
+//    plt::figure_size(1280, 720);
+//    plt::plot(open_data, line_color);
+//    plt::grid(true);
+//    plt::show();
 
-    std::vector<std::string> dates = {};
-    unsigned int _shape = data.shape(0);
-
-    for (int i = 1; i < _shape; i++)
-        dates.push_back(data(i, 0));
-
-    std::vector<double> open_data = {};
-    for (int i = 1; i < _shape; i++) {
-        double val = std::stod(data(i, 1));
-        open_data.push_back(val);
-    }
-    std::vector<std::size_t> open_data_shape = {1, open_data.size()};
-    auto a = xt::adapt(open_data, open_data_shape);
-
-    auto trend = xt::all(xt::diff(a) > 0);
-    std::string line_color = "r-";
-
-    if (trend == 1)
-        line_color = "g-";
-
-    plt::figure_size(1280, 720);
-    plt::plot(open_data, line_color);
-    plt::grid(true);
-    plt::show();
-
-
+    // work on predictions
+    std::vector<std::size_t> shape = {1, open_data.size()};
+    auto a = xt::adapt(open_data, shape);
+    auto b = xt::adapt(close_data, shape);
+    auto open_close = a - b;
 
 
     return 0;
